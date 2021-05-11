@@ -12,6 +12,11 @@
             <div class="col-sm-4">
                 <input class="form-control" type="text" name="food" id="food" >
             </div>
+
+            <!-- display an error message if there is one -->
+            <check if="{{ isset(@errors['food']) }}">
+                <span class="err">{{ @errors['food'] }}</span>
+            </check>
         </div>
         <br>
 
@@ -19,12 +24,18 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Select a meal</label>
             <div class="col-sm-4">
-                <label><input type="radio" name="meal"
-                              id="breakfast" value="breakfast"> Breakfast</input></label><br>
-                <label><input type="radio" name="meal"
-                              id="lunch" value="lunch"> Lunch</input></label><br>
-                <label><input type="radio" name="meal"
-                              id="dinner" value="dinner"> Dinner</input></label><br>
+                <repeat group="{{ @meals }}" value="{{ @meal }}">
+                    <label><input type="radio" name="meal"
+                                  id="{{ @meal }}"
+                                  value="{{ @meal }}"> {{ ucfirst(@meal) }}
+                        </input>
+                    </label><br>
+                </repeat>
+
+                <!-- display an error message for meal if there is one -->
+                <check if="{{ isset(@errors['meal']) }}">
+                    <span class="err">{{ @errors['meal'] }}</span>
+                </check>
             </div>
         </div>
 
