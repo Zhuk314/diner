@@ -10,7 +10,7 @@
             <label for="food" class="col-sm-2 control-label">What food would you like to order?</label>
 
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="food" id="food" >
+                <input class="form-control" type="text" name="food" id="food" value="{{ @userFood }}">
             </div>
 
             <!-- display an error message if there is one -->
@@ -27,7 +27,9 @@
                 <repeat group="{{ @meals }}" value="{{ @meal }}">
                     <label><input type="radio" name="meal"
                                   id="{{ @meal }}"
-                                  value="{{ @meal }}"> {{ ucfirst(@meal) }}
+                                  value="{{ @meal }}"
+                                  <check if="{{ @meal == @userMeal }}">checked = "checked"</check>
+                        > {{ ucfirst(@meal) }}
                         </input>
                     </label><br>
                 </repeat>
