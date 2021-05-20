@@ -9,16 +9,19 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Select condiments</label>
             <div class="col-sm-4">
-                <label><input type="checkbox"
-                              name="conds[]"
-                              value="ketchup"> ketchup</label><br>
-                <label><input type="checkbox"
-                              name="conds[]"
-                              value="mustard"> mustard</label><br>
-                <label><input type="checkbox"
-                              name="conds[]"
-                              value="sriracha"> sriracha</label><br>
+                <repeat group="{{ @condiments }}" value="{{ @condiment }}">
+                    <label><input type="checkbox"
+                                  name="conds[]"
+                                  value="{{ @condiment }}"
+                        <check if="{{ in_array(@condiment, @userConds) }}">
+                            checked="checked"
+                        </check>
+                        > {{ @condiment }}</label><br>
+                </repeat>
             </div>
+            <check if="{{ isset(@errors['conds']) }}">
+                <span class="err">{{ @errors['conds'] }}</span>
+            </check>
         </div>
 
         <div class="col-xs-3 ">

@@ -66,7 +66,7 @@ $f3->route('GET|POST /order1', function($f3){
         }
 
         //If meal is valid, store data
-        if(!empty($userMeal) && validMeal($userFood)) {
+        if(!empty($userMeal) && validMeal($userMeal)) {
             $_SESSION['meal'] = $userMeal;
         }
         //Otherwise, set an error variable in the hive
@@ -83,7 +83,7 @@ $f3->route('GET|POST /order1', function($f3){
     //Get the data from the model
     $f3->set('meals', getMeals());
 
-    //Store the user input in hive
+    //Store the user input in the hive
     $f3->set('userFood', $userFood);
     $f3->set('userMeal', $userMeal);
 
@@ -94,6 +94,9 @@ $f3->route('GET|POST /order1', function($f3){
 
 $f3->route('GET|POST /order2', function($f3){
 
+    //Initialize variables for user input
+    $userConds = array();
+
     //If the form has been submitted, validate the data
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //var_dump($_POST);
@@ -101,9 +104,12 @@ $f3->route('GET|POST /order2', function($f3){
         //If condiments are selected
         if (!empty($_POST['conds'])) {
 
+            //Get user input
+            $userConds = $_POST['conds'];
+
             //If condiments are valid
-            if (validCondiments($_POST['conds'])) {
-                $_SESSION['conds'] = implode(", ", $_POST['conds']);
+            if (validCondiments($userConds)) {
+                $_SESSION['conds'] = implode(", ", $userConds);
             }
             else {
                 $f3->set('errors["conds"]', 'Invalid selection');
@@ -116,8 +122,13 @@ $f3->route('GET|POST /order2', function($f3){
         }
     }
 
+    //var_dump($userConds);
+
     //Get the condiments from the Model and send them to the View
     $f3->set('condiments', getCondiments());
+
+    //Add the user data to the hive
+    $f3->set('userConds', $userConds);
 
     //Display the second order form
     $view = new Template();
