@@ -4,9 +4,9 @@
 <body>
 <div class="container">
     <h1>Order Summary</h1>
-    <p>Thank you for ordering {{ @SESSION.food }} for {{ @SESSION.meal }}</p>
-    <check if="{{ isset(@SESSION.conds) }}">
-        <p>Condiments: {{ @SESSION.conds }}</p>
+    <p>Thank you for ordering {{ @SESSION.order->getFood() }} for {{ @SESSION.order->getMeal() }}</p>
+    <check if="{{ !empty(@SESSION.order->getCondiments()) }}">
+        <p>Condiments: {{ @SESSION.order->getCondiments() }}</p>
     </check>
 
     <a href="order1">Place another order</a><br>

@@ -3,15 +3,17 @@
 class Order
 {
     private $_food;
-    private $_meel;
+    private $_meal;
     private $_condiments;
 
     /**
      * Order constructor.
      */
-    public function __construct()
+    public function __construct($food="", $meal="", $condiments="")
     {
-        $this->_food = "";
+        $this->_food = $food;
+        $this->_meal = $meal;
+        $this->_condiments = $condiments;
     }
 
     /**
@@ -31,36 +33,38 @@ class Order
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getMeel()
+    public function getMeal(): string
     {
-        return $this->_meel;
+        return $this->_meal;
     }
 
     /**
-     * @param mixed $meel
+     * @param string $meal
      */
-    public function setMeel($meel): void
+    public function setMeal(string $meal): void
     {
-        $this->_meel = $meel;
+        $this->_meal = $meal;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCondiments()
+    public function getCondiments(): string
     {
         return $this->_condiments;
     }
 
     /**
-     * @param mixed $condiments
+     * @param string $condiments
      */
-    public function setCondiments($condiments): void
+    public function setCondiments(string $condiments): void
     {
         $this->_condiments = $condiments;
     }
+
+
 
 
 }
