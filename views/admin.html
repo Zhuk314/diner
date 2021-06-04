@@ -1,0 +1,40 @@
+<!-- 328/diner/views/admin.html -->
+
+<include href="views/header.html" />
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+<body>
+<div class="container">
+    <h1>Admin Page: Order Summary</h1>
+
+    <table id="tblOrders">
+        <thead>
+        <tr>
+            <td>Order ID</td><td>Food</td><td>Meal</td><td>Condiments</td><td>Order Date</td>
+        </tr>
+        </thead>
+        <tbody>
+        <repeat group="{{ @orders }}" value="{{ @order }}">
+            <tr>
+                <td>{{ @order['order_id'] }}</td>
+                <td>{{ @order['food'] }}</td>
+                <td>{{ @order['meal'] }}</td>
+                <td>{{ @order['condiments'] }}</td>
+                <td>{{ @order['order_date'] }}</td>
+            </tr>
+        </repeat>
+        </tbody>
+    </table>
+
+    <a href="{{ @BASE }}">Home Page</a>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-3.5.1.js"></script>
+<script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $('#tblOrders').DataTable();
+</script>
+</body>
+</html>

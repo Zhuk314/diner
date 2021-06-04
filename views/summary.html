@@ -1,9 +1,10 @@
-<!-- 328/diner/views/home.html -->
+<!-- 328/diner/views/summary.html -->
 
 <include href="views/header.html" />
 <body>
 <div class="container">
     <h1>Order Summary</h1>
+    <p>Order ID: {{ @orderId }}</p>
     <p>Thank you for ordering {{ @SESSION.order->getFood() }} for {{ @SESSION.order->getMeal() }}</p>
     <check if="{{ !empty(@SESSION.order->getCondiments()) }}">
         <p>Condiments: {{ @SESSION.order->getCondiments() }}</p>

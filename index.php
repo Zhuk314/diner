@@ -14,7 +14,17 @@ session_start();
 $f3 = Base::instance();
 $con = new Controller($f3);
 $dataLayer = new DataLayer();
+
+//Test code
+//$result = $dataLayer->getMeals();
+//var_dump($result);
 //$dataLayer->saveOrder(new Order('taco', 'lunch', 'salsa'));
+/*
+echo "<pre>";
+$result = $dataLayer->getOrders();
+var_dump($result);
+echo "</pre>";
+*/
 
 //Define default route
 $f3->route('GET /', function(){
@@ -46,6 +56,10 @@ $f3->route('GET|POST /order2', function($f3){
 
 $f3->route('GET /summary', function(){
     $GLOBALS['con']->summary();
+});
+
+$f3->route('GET /admin', function(){
+    $GLOBALS['con']->admin();
 });
 
 //Run Fat-Free
